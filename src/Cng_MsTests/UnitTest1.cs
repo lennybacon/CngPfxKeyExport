@@ -257,8 +257,10 @@ namespace Sample
             {
               Trace.WriteLine(key2.ExportPolicy);
 
-              return key2.Export(CngKeyBlobFormat.Pkcs8PrivateBlob);
-
+              var plainTextBytes =
+                key2.Export(CngKeyBlobFormat.Pkcs8PrivateBlob);
+              key2.Delete();
+              return plainTextBytes;
             }
         }
     }
